@@ -9,5 +9,7 @@ namespace BusinessLogic.Contracts
         Task<User> Login(UserLogin userLogin);
 
         Task<User> Login(string username);
+
+        Task<UserResponse> Register(UserRegister userRegister);
     }
 }

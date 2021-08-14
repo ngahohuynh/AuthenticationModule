@@ -5,6 +5,7 @@ using DataAccess.Exceptions;
 using DataAccess.Models;
 using DataAccess.Utils;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
@@ -40,6 +41,29 @@ namespace BusinessLogic.Services
             }
 
             return user;
+        }
+
+        public async Task<UserResponse> Register(UserRegister userRegister)
+        {
+            if (await Context.Users.AnyAsync(u => u.Username == userRegister.Username))
+            {
+                throw new BadRequestException("Username Existed");
+            }
+
+            var user = new User()
+            {
+                Name = userRegister.Name,
+                Username = userRegister.Username,
+                Password = userRegister.Password.EncodePassword(),
+                Type = userRegister.Type,
+                Valid = true,
+                CreatedDate = DateTime.Now
+            };
+
+            base.AddEntry(user);
+            await Context.SaveChangesAsync();
+
+            return new UserResponse() { Id = user.Id, Name = user.Name, Username = user.Username, Type = user.Type };
         }
 
         private async Task<User> GetUser(string username)

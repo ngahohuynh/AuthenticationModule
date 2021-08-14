@@ -1,4 +1,5 @@
 ﻿using AuthenticationModule.Providers;
+using BusinessLogic.Contracts;
 using BusinessLogic.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -9,17 +10,21 @@ namespace AuthenticationModule.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ITokenGenerator tokenGenerator;
+        private readonly IAuthService authService;
 
-        public AuthController(ITokenGenerator tokenGenerator)
+        public AuthController(ITokenGenerator tokenGenerator, IAuthService authService)
         {
             this.tokenGenerator = tokenGenerator;
+            this.authService = authService;
         }
 
 
         [HttpPost]
-        public async Task<TokenResponse> Login([FromBody] UserLogin userLogin)
-        {
-            return await tokenGenerator.GenerateToken(userLogin);
-        }
+        [Route("login")]
+        public async Task<TokenResponse> Login([FromBody] UserLogin userLogin) => await tokenGenerator.GenerateToken(userLogin);
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<UserResponse> Register([FromBody] UserRegister userRegister) => await authService.Register(userRegister);
     }
 }
