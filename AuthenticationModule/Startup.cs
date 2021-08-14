@@ -1,4 +1,5 @@
 using AuthenticationModule.Configs;
+using AuthenticationModule.Handlers;
 using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +34,8 @@ namespace AuthenticationModule
 
             services.RegisterDI();
 
-            services.AddMvc()
+            services
+                .AddMvc(FilterHelper.Register)
                 .AddJsonOptions(opts =>
                 {
                     opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -43,6 +45,8 @@ namespace AuthenticationModule
                 opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
                 ServiceLifetime.Transient, ServiceLifetime.Transient
             );
+
+            services.ConfigSecurity(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +56,8 @@ namespace AuthenticationModule
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<TokenProviderMiddleware>();
 
             app.UseHttpsRedirection();
 
