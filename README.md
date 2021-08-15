@@ -1,4 +1,5 @@
-# Authentication Module with .NET Core and Angular
+# Authentication Module 
+Authentication Module with .NET Core and Angular
 
 ## API commands
 Open `AuthenticationModule/appsettings.json` file and paste your connection string in `<CONNECTION_STRING>`
