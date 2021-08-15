@@ -8,9 +8,9 @@ namespace AuthenticationModule.Controllers
     public class HomeController : ControllerBase
     {
         [HttpGet]
-        public string SayHello()
+        public object SayHello()
         {
-            return "Hello World!!";
+            return new { Message = "Hello World!!" };
         }
     }
 }

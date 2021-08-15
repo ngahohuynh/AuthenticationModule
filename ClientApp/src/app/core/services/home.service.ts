@@ -10,8 +10,8 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  getMessage(): Observable<string> {
-    return this.http.get<string>(this.baseUrl);
+  getMessage(): Observable<any> {
+    return this.http.get<any>(this.baseUrl);
   }
 
 }

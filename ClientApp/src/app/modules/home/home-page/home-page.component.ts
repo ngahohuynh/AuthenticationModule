@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HomeService } from 'src/app/core/services/home.service';
 import { User } from 'src/app/shared/models/user.model';
@@ -18,7 +19,9 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.currentUser;
-    this.message = this.homeService.getMessage();
+    this.message = this.homeService.getMessage().pipe(
+      map(response => response.message)
+    );
   }
 
 }

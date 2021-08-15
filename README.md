@@ -30,7 +30,9 @@ dotnet AuthenticationModule.dll
 
 ## Frontend commands
 #### _Run the application (With proxy)_
+CD to the ClientApp folder
 ```sh
-cd ClientApp
 npm run start
 ```
+
+Visit the website on your browser at `http://localhost:4200/`
