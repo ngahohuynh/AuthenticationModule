@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     declarations: [],
@@ -35,7 +36,8 @@ import { MatCardModule } from '@angular/material/card';
         MatTableModule,
         MatDividerModule,
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        MatRadioModule
     ],
     exports: [
         LayoutModule,
@@ -54,7 +56,8 @@ import { MatCardModule } from '@angular/material/card';
         MatTableModule,
         MatDividerModule,
         MatDialogModule,
-        MatCardModule
+        MatCardModule,
+        MatRadioModule
     ]
 })
 export class MaterialModule {

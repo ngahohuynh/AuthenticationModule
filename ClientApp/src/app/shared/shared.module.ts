@@ -1,12 +1,20 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { HeaderComponent } from "./components/header/header.component";
 import { MaterialModule } from "./material.module";
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HeaderComponent
+  ],
   imports: [
+    CommonModule,
+    
     MaterialModule
   ],
-  exports: [],
+  exports: [
+    HeaderComponent
+  ],
   providers: []
 })
 export class SharedModule {

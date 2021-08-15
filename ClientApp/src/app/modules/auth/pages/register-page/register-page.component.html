@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div *ngIf="!loggedIn()">
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required>
+        </mat-form-field>
+        
+        <label id="type">You are</label>
+        <mat-radio-group formControlName="type" aria-labelledby="type" required class="form-field">
+          <mat-radio-button value="buyer">Buyer</mat-radio-button>
+          <mat-radio-button value="seller">Seller</mat-radio-button>
+        </mat-radio-group>
+        <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Register</button>
+
+      </form>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

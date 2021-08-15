@@ -9,6 +9,8 @@ import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './shared/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,12 @@ import { MaterialModule } from './shared/material.module';
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
+    HttpClientModule,
 
     AppRoutingModule,
 
     SharedModule,
+    CoreModule,
     MaterialModule,
     HomeModule,
     AuthModule

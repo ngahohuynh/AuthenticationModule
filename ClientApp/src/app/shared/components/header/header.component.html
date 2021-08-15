@@ -1,0 +1,14 @@
+<mat-toolbar>
+
+  <ng-content></ng-content>
+
+  <span class="title">Authentication Module</span>
+
+  <span class="spacer"></span>
+
+  <span *ngIf="!loggedIn()">
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  </span>
+
+</mat-toolbar>
